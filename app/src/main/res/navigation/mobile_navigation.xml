@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@id/navigation_on_sale">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.gamescout.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_search"
+        android:name="com.example.gamescout.ui.search.SearchFragment"
+        android:label="@string/title_search"
+        tools:layout="@layout/fragment_search" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.gamescout.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_on_sale"
+        android:name="com.example.gamescout.ui.on_sale.OnSaleFragment"
+        android:label="@string/title_on_sale"
+        tools:layout="@layout/fragment_on_sale" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.gamescout.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_wish_list"
+        android:name="com.example.gamescout.ui.wish_list.WishListFragment"
+        android:label="@string/title_wish_list"
+        tools:layout="@layout/fragment_wish_list" />
 </navigation>
