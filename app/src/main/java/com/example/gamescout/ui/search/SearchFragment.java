@@ -1,21 +1,18 @@
 package com.example.gamescout.ui.search;
 
-import android.app.AlertDialog;
+import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
+import android.renderscript.ScriptGroup;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,7 +23,6 @@ import com.example.gamescout.R;
 import com.example.gamescout.ui.api.APIConst;
 import com.example.gamescout.ui.api.Game;
 import com.example.gamescout.ui.api.GameSingleton;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 
@@ -44,7 +40,6 @@ public class SearchFragment extends Fragment {
         searchViewModel =
                 new ViewModelProvider(this).get(SearchViewModel.class);
         View root = inflater.inflate(R.layout.fragment_search, container, false);
-
 
         SearchView searchView = root.findViewById(R.id.searchView);
 
@@ -90,6 +85,9 @@ public class SearchFragment extends Fragment {
                     e.printStackTrace();
                 }
 
+                InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(root.getWindowToken(), 0);
+
                 return true;
             }
             @Override
@@ -111,7 +109,7 @@ public class SearchFragment extends Fragment {
         @NonNull
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.game_search_recyclerview_layout, null);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.game_search_cardview_layout, parent, false);
             return new CustomGamesSearchAdapter.ViewHolder(view);
         }
 
@@ -120,7 +118,7 @@ public class SearchFragment extends Fragment {
             Game game = this.gamesSearchList.get(position);
 
             holder.gameName.setText(game.getGameName());
-            holder.gamePrice.setText(game.getGameNormalPrice());
+            holder.gamePrice.setText("$" + game.getGameNormalPrice());
 //            Picasso.get().load(game.getGameImage()).into(holder.gameImage);
 
         }
@@ -140,8 +138,8 @@ public class SearchFragment extends Fragment {
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
-                gameName = itemView.findViewById(R.id.gameName);
-                gamePrice = itemView.findViewById(R.id.gamePrice);
+                gameName = itemView.findViewById(R.id.onSaleName);
+                gamePrice = itemView.findViewById(R.id.onSaleNormalPrice);
 //                gameImage = itemView.findViewById(R.id.gameImage);
             }
         }

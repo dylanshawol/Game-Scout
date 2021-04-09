@@ -11,7 +11,7 @@ public class APIConst {
     };
 
     // JSON Deal Keys
-    public static final String NAME_KEY = "internalName";
+    public static final String NAME_KEY = "title";
     public static final String NORMAL_PRICE_KEY = "normalPrice";
     public static final String IMAGE_KEY = "thumb";
     public static final String METACRITIC_SCORE_KEY = "metacriticScore";

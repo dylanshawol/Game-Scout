@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardBackgroundColor="@color/primary_color"
+    app:cardCornerRadius="15dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary_color">
+
+        <ImageView
+            android:id="@+id/linkIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonBackground"
+            app:layout_constraintEnd_toEndOf="@+id/buttonBackground"
+            app:layout_constraintStart_toStartOf="@+id/buttonBackground"
+            app:layout_constraintTop_toTopOf="@+id/buttonBackground"
+            app:srcCompat="@drawable/ic_baseline_link_24" />
+
+        <ImageView
+            android:id="@+id/buttonBackground"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/button_background" />
+
+        <TextView
+            android:id="@+id/onSaleNormalPrice"
+            android:background="@drawable/strikethrough"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/roboto_slab"
+            android:text="Game Price"
+            android:textColor="@color/custom_white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/onSaleName"
+            app:layout_constraintTop_toBottomOf="@+id/onSaleName" />
+
+        <TextView
+            android:id="@+id/onSalePrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/roboto_slab"
+            android:text="Game Price"
+            android:textColor="@color/custom_white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/onSaleNormalPrice"
+            app:layout_constraintStart_toEndOf="@+id/onSaleNormalPrice"
+            app:layout_constraintTop_toTopOf="@+id/onSaleNormalPrice" />
+
+        <TextView
+            android:id="@+id/onSaleName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/roboto_slab"
+            android:text="Game Name"
+            android:textColor="@color/custom_white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

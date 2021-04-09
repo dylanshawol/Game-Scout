@@ -12,7 +12,6 @@ public class OnSaleViewModel extends ViewModel {
         mText = new MutableLiveData<>();
         mText.setValue("This is on sale fragment");
     }
-
     public LiveData<String> getText() {
         return mText;
     }
