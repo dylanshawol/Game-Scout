@@ -4,6 +4,8 @@
     <string name="title_search">Search</string>
     <string name="title_on_sale">On Sale</string>
     <string name="title_wish_list">Wish List</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

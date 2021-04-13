@@ -3,11 +3,11 @@ package com.example.gamescout.ui.search;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.renderscript.ScriptGroup;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -23,6 +23,7 @@ import com.example.gamescout.R;
 import com.example.gamescout.ui.api.APIConst;
 import com.example.gamescout.ui.api.Game;
 import com.example.gamescout.ui.api.GameSingleton;
+import com.example.gamescout.ui.database.WishListDatabase;
 
 import org.json.JSONException;
 
@@ -35,19 +36,22 @@ public class SearchFragment extends Fragment {
 
     private SearchViewModel searchViewModel;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        searchViewModel =
-                new ViewModelProvider(this).get(SearchViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_search, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        searchViewModel = new ViewModelProvider(this).get(SearchViewModel.class);
 
-        SearchView searchView = root.findViewById(R.id.searchView);
+        View view = inflater.inflate(R.layout.fragment_search, container, false);
+
+        SearchView searchView = view.findViewById(R.id.searchView);
 
         searchView.setIconifiedByDefault(false);
+
+        searchView.setQueryHint("Search for a game");
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
+//                Navigation.findNavController(view).navigate(R.id.searchedGameFragment);
+
                 ArrayList<Game> searchedGamesList = new ArrayList<>();
 
                 try {
@@ -57,21 +61,23 @@ public class SearchFragment extends Fragment {
                             String gameName;
                             String gameNormalPrice;
                             String gameImage;
+                            String steamAppID;
 
                             for (int i = 0; i < response.length(); i++) {
                                 try {
                                     gameName = response.getJSONObject(i).getString(APIConst.SEARCH_NAME_KEY);
                                     gameNormalPrice = response.getJSONObject(i).getString(APIConst.SEARCH_PRICE_KEY);
                                     gameImage = response.getJSONObject(i).getString(APIConst.IMAGE_KEY);
+                                    steamAppID = response.getJSONObject(i).getString(APIConst.STEAM_APP_ID_KEY);
 
-                                    searchedGamesList.add(new Game(gameName, gameNormalPrice, gameImage));
+                                    searchedGamesList.add(new Game(gameName, gameNormalPrice, gameImage, steamAppID));
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
                             }
 
-                        RecyclerView recyclerView = root.findViewById(R.id.searchRecycler);
+                        RecyclerView recyclerView = view.findViewById(R.id.searchRecycler);
 
                         recyclerView.setAdapter(new CustomGamesSearchAdapter(searchedGamesList, getContext()));
 
@@ -86,7 +92,7 @@ public class SearchFragment extends Fragment {
                 }
 
                 InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(root.getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
                 return true;
             }
@@ -94,8 +100,10 @@ public class SearchFragment extends Fragment {
             public boolean onQueryTextChange(String s) { return false; }
         });
 
-        return root;
+        return view;
+
     }
+
 
     public static class CustomGamesSearchAdapter extends RecyclerView.Adapter<CustomGamesSearchAdapter.ViewHolder> {
         ArrayList<Game> gamesSearchList;
@@ -119,7 +127,17 @@ public class SearchFragment extends Fragment {
 
             holder.gameName.setText(game.getGameName());
             holder.gamePrice.setText("$" + game.getGameNormalPrice());
-//            Picasso.get().load(game.getGameImage()).into(holder.gameImage);
+
+            holder.linkIcon.setOnClickListener(view -> {
+
+            });
+
+            holder.addToWishListIcon.setOnClickListener(view -> {
+                WishListDatabase db = new WishListDatabase(context);
+                db.addGame(new Game(game.getGameName(), game.getGameNormalPrice(), game.getGameImage(), game.getSteamAppID()));
+                db.close();
+            });
+
 
         }
 
@@ -134,13 +152,17 @@ public class SearchFragment extends Fragment {
         class ViewHolder extends RecyclerView.ViewHolder {
             protected TextView gameName;
             protected TextView gamePrice;
-//            protected ImageView gameImage;
+            protected ImageView linkIcon;
+            protected ImageView addToWishListIcon;
+
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
-                gameName = itemView.findViewById(R.id.onSaleName);
-                gamePrice = itemView.findViewById(R.id.onSaleNormalPrice);
-//                gameImage = itemView.findViewById(R.id.gameImage);
+                gameName = itemView.findViewById(R.id.searchName);
+                gamePrice = itemView.findViewById(R.id.searchNormalPrice);
+                linkIcon = itemView.findViewById(R.id.searchLinkBackground);
+                addToWishListIcon = itemView.findViewById(R.id.searchAddBackground
+                );
             }
         }
     }

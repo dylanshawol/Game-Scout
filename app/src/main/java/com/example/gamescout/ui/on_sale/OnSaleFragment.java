@@ -1,16 +1,23 @@
 package com.example.gamescout.ui.on_sale;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,12 +36,13 @@ import java.util.ArrayList;
 public class OnSaleFragment extends Fragment {
 
     private OnSaleViewModel onSaleViewModel;
+    private Activity activity;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        onSaleViewModel =
-                new ViewModelProvider(this).get(OnSaleViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_on_sale, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        onSaleViewModel = new ViewModelProvider(this).get(OnSaleViewModel.class);
+        View view = inflater.inflate(R.layout.fragment_on_sale, container, false);
+
+        activity = getActivity();
 
         ArrayList<Game> onSaleGamesList = new ArrayList<>();
 
@@ -42,27 +50,35 @@ public class OnSaleFragment extends Fragment {
 
         JsonArrayRequest r = new JsonArrayRequest(Request.Method.GET, url, null, response -> {
             String gameName;
+            String gameImage;
+            String steamAppID;
             String gameNormalPrice;
             String gameSalePrice;
             String savings;
             String metacriticScore;
+            String steamRatingCount;
+            String steamRatingText;
 
             for (int i = 0; i < response.length(); i++) {
                 try {
                     gameName = response.getJSONObject(i).getString(APIConst.NAME_KEY);
+                    gameImage = response.getJSONObject(i).getString(APIConst.IMAGE_KEY);
+                    steamAppID = response.getJSONObject(i).getString(APIConst.STEAM_APP_ID_KEY);
                     gameNormalPrice = response.getJSONObject(i).getString(APIConst.NORMAL_PRICE_KEY);
                     gameSalePrice = response.getJSONObject(i).getString(APIConst.SALE_PRICE_KEY);
                     savings = response.getJSONObject(i).getString(APIConst.SAVINGS_KEY);
                     metacriticScore = response.getJSONObject(i).getString(APIConst.METACRITIC_SCORE_KEY);
+                    steamRatingCount = response.getJSONObject(i).getString(APIConst.STEAM_RATING_COUNT_KEY);
+                    steamRatingText = response.getJSONObject(i).getString(APIConst.STEAM_RATING_TEXT_KEY);
 
-                    onSaleGamesList.add(new Game(gameName, gameNormalPrice, "", metacriticScore, gameSalePrice, savings));
+                    onSaleGamesList.add(new Game(gameName, gameNormalPrice, gameImage, steamAppID, metacriticScore, gameSalePrice, savings, steamRatingCount, steamRatingText));
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
 
-            RecyclerView recyclerView = root.findViewById(R.id.onSaleRecycler);
+            RecyclerView recyclerView = view.findViewById(R.id.onSaleRecycler);
 
             recyclerView.setAdapter(new CustomGamesOnSaleAdapter(onSaleGamesList, getContext()));
 
@@ -72,10 +88,10 @@ public class OnSaleFragment extends Fragment {
 
         GameSingleton.getInstance(getContext()).getRequestQueue().add(r);
 
-        return root;
+        return view;
     }
 
-    public static class CustomGamesOnSaleAdapter extends RecyclerView.Adapter<CustomGamesOnSaleAdapter.ViewHolder> {
+    public class CustomGamesOnSaleAdapter extends RecyclerView.Adapter<CustomGamesOnSaleAdapter.ViewHolder> {
         ArrayList<Game> gamesSearchList;
         Context context;
 
@@ -99,6 +115,47 @@ public class OnSaleFragment extends Fragment {
             holder.gameNormalPrice.setText("$" + game.getGameNormalPrice());
             holder.gameOnSalePrice.setText("$" + game.getGameSalePrice());
 
+            holder.addToWishListButton.setOnClickListener(view -> {
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+
+                builder.setTitle("Add " + game.getGameName() + " to Wish List?")
+                        // Yes
+                        .setPositiveButton("YES", (dialogInterface, i) -> {
+                            // Add Game to wish list
+                            Bundle extra = new Bundle();
+
+
+
+                            dialogInterface.dismiss();
+                        })
+                        // No
+                        .setNegativeButton("NO", ((dialogInterface, i) -> dialogInterface.dismiss()));
+
+                builder.create().show();
+            });
+
+            holder.openInSteamButton.setOnClickListener(view -> {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(APIConst.STEAM_APP_ID_URL + game.getSteamAppID()));
+
+                if (intent.resolveActivity(activity.getPackageManager()) != null) startActivity(intent);
+
+            });
+
+            holder.onSaleCardView.setOnClickListener(view -> {
+                Bundle bundle = new Bundle();
+
+                bundle.putString("gameName", game.getGameName());
+                bundle.putString("gameImage", game.getGameImage());
+                bundle.putString("gameNormalPrice", game.getGameNormalPrice());
+                bundle.putString("gameSalePrice", game.getGameSalePrice());
+                bundle.putString("metacriticScore", game.getMetacriticScore());
+                bundle.putString("savings", game.getGameSavings());
+                bundle.putString("steamAppID", game.getSteamAppID());
+                bundle.putString("steamRatingCount", game.getSteamRatingCount());
+                bundle.putString("steamRatingText", game.getSteamRatingText());
+
+                Navigation.findNavController(view).navigate(R.id.onSaleGameFragment, bundle);
+            });
         }
 
         @Override
@@ -113,14 +170,19 @@ public class OnSaleFragment extends Fragment {
             protected TextView gameName;
             protected TextView gameNormalPrice;
             protected TextView gameOnSalePrice;
+            protected ImageView addToWishListButton;
+            protected ImageView openInSteamButton;
+            protected CardView onSaleCardView;
 
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
-                gameName = itemView.findViewById(R.id.onSaleName);
-                gameNormalPrice = itemView.findViewById(R.id.onSaleNormalPrice);
+                gameName = itemView.findViewById(R.id.searchName);
+                gameNormalPrice = itemView.findViewById(R.id.searchNormalPrice);
                 gameOnSalePrice = itemView.findViewById(R.id.onSalePrice);
-
+                addToWishListButton = itemView.findViewById(R.id.onSaleAddIcon);
+                openInSteamButton = itemView.findViewById(R.id.searchLinkBackground);
+                onSaleCardView = itemView.findViewById(R.id.onSaleCardView);
             }
         }
     }

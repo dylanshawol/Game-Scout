@@ -18,6 +18,11 @@ public class WishListFragment extends Fragment {
 
     private WishListViewModel wishListViewModel;
 
+    public static final int UPDATE = 1;
+    public static final int CREATE = 2;
+
+    public static final String ACTION_TYPE = "action_type";
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         wishListViewModel =

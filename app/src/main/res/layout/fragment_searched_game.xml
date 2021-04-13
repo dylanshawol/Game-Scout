@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/custom_white"
+    tools:context=".ui.on_sale.OnSaleGameFragment">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/custom_white"
+            android:paddingBottom="15dp"
+            tools:context=".ui.on_sale.OnSaleGameFragment">
+
+            <ImageView
+                android:id="@+id/searchedGameDescriptionBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/game_description_box"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchedGameName" />
+
+            <TextView
+                android:id="@+id/searchedGameNormalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/fragment_price_strikethrough"
+                android:fontFamily="@font/dosis"
+                android:text="$XX.XX"
+                android:textColor="@color/secondary_color"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/searchedGameDescriptionBox"
+                app:layout_constraintTop_toTopOf="@+id/searchedGameDescriptionBox" />
+
+            <TextView
+                android:id="@+id/searchedGamePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dosis"
+                android:text="$XX.XX"
+                android:textColor="@color/secondary_color"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/searchedGameNormalPrice"
+                app:layout_constraintTop_toBottomOf="@+id/searchedGameNormalPrice" />
+
+            <TextView
+                android:id="@+id/searchedGameName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="25dp"
+                android:fontFamily="@font/dosis_semibold"
+                android:text="On Sale Game Name"
+                android:textAlignment="center"
+                android:textColor="@color/secondary_color"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchedGameImage" />
+
+            <ImageView
+                android:id="@+id/searchedGameImage"
+                android:layout_width="200dp"
+                android:layout_height="250dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
+
+            <Button
+                android:id="@+id/searchedAddToWishListButton"
+                android:layout_width="325dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/secondary_color"
+                android:fontFamily="@font/dosis_semibold"
+                android:text="Add To Wish List"
+                android:textColor="@color/custom_white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/searchedGameDescriptionBox"
+                app:layout_constraintEnd_toEndOf="@+id/searchedGameDescriptionBox"
+                app:layout_constraintStart_toStartOf="@+id/searchedGameDescriptionBox" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/custom_white"
+    tools:context=".ui.on_sale.OnSaleGameFragment">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/custom_white"
+            android:paddingBottom="15dp"
+            tools:context=".ui.on_sale.OnSaleGameFragment">
+
+            <TextView
+                android:id="@+id/onSaleGameMetacriticRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="10dp"
+                android:fontFamily="sans-serif"
+                android:text="50"
+                android:textColor="@color/custom_white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/onSaleGameMetacriticRatingBackground"
+                app:layout_constraintEnd_toEndOf="@+id/onSaleGameMetacriticRatingBackground"
+                app:layout_constraintStart_toStartOf="@+id/onSaleGameMetacriticRatingBackground"
+                app:layout_constraintTop_toTopOf="@+id/onSaleGameMetacriticRatingBackground" />
+
+            <ImageView
+                android:id="@+id/onSaleGameMetacriticRatingBackground"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/metacritic_rating_background"
+                app:layout_constraintBottom_toBottomOf="@+id/metacriticRatingLabel"
+                app:layout_constraintStart_toEndOf="@+id/metacriticRatingLabel"
+                app:layout_constraintTop_toTopOf="@+id/metacriticRatingLabel" />
+
+            <TextView
+                android:id="@+id/metacriticRatingLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/dosis"
+                android:text="Metacritic Rating:"
+                android:textColor="@color/secondary_color"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/numOfRatingsLabel"
+                app:layout_constraintTop_toBottomOf="@+id/numOfRatingsLabel" />
+
+            <TextView
+                android:id="@+id/numOfSteamRatings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/dosis"
+                android:text="XX"
+                android:textColor="@color/secondary_color"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/numOfRatingsLabel"
+                app:layout_constraintTop_toTopOf="@+id/numOfRatingsLabel" />
+
+            <TextView
+                android:id="@+id/numOfRatingsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/dosis"
+                android:text="# of Ratings:"
+                android:textColor="@color/secondary_color"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/steamRatingLabel"
+                app:layout_constraintTop_toBottomOf="@+id/steamRatingLabel" />
+
+            <TextView
+                android:id="@+id/steamRatingLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/dosis"
+                android:text="Steam Rating:"
+                android:textColor="@color/secondary_color"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/imageView2"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+            <TextView
+                android:id="@+id/steamRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/dosis"
+                android:text="Positive"
+                android:textColor="@color/secondary_color"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/steamRatingLabel"
+                app:layout_constraintStart_toEndOf="@+id/steamRatingLabel"
+                app:layout_constraintTop_toTopOf="@+id/steamRatingLabel" />
+
+            <TextView
+                android:id="@+id/openWithSteam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/dosis"
+                android:text="Open With Steam"
+                android:textColor="@color/secondary_color"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_steam_icon"
+                app:layout_constraintStart_toStartOf="@+id/searchedGameDescriptionBox"
+                app:layout_constraintTop_toTopOf="@+id/searchedGameDescriptionBox" />
+
+            <ImageView
+                android:id="@+id/searchedGameDescriptionBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/game_description_box"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/onSaleGameName" />
+
+            <TextView
+                android:id="@+id/onSaleGameNormalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/fragment_price_strikethrough"
+                android:fontFamily="@font/dosis"
+                android:text="$XX.XX"
+                android:textColor="@color/secondary_color"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/searchedGameDescriptionBox"
+                app:layout_constraintTop_toTopOf="@+id/searchedGameDescriptionBox" />
+
+            <TextView
+                android:id="@+id/onSaleGamePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dosis"
+                android:text="$XX.XX"
+                android:textColor="@color/secondary_color"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/onSaleGameNormalPrice"
+                app:layout_constraintTop_toBottomOf="@+id/onSaleGameNormalPrice" />
+
+            <TextView
+                android:id="@+id/onSaleGameName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="25dp"
+                android:fontFamily="@font/dosis_semibold"
+                android:text="On Sale Game Name"
+                android:textAlignment="center"
+                android:textColor="@color/secondary_color"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/onSaleGameImage" />
+
+            <ImageView
+                android:id="@+id/onSaleGameImage"
+                android:layout_width="240dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
+
+            <Button
+                android:id="@+id/searchedAddToWishListButton"
+                android:layout_width="325dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/secondary_color"
+                android:fontFamily="@font/dosis_semibold"
+                android:text="Add To Wish List"
+                android:textColor="@color/custom_white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/searchedGameDescriptionBox"
+                app:layout_constraintEnd_toEndOf="@+id/searchedGameDescriptionBox"
+                app:layout_constraintStart_toStartOf="@+id/searchedGameDescriptionBox" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

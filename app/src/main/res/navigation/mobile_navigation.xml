@@ -9,17 +9,35 @@
         android:id="@+id/navigation_search"
         android:name="com.example.gamescout.ui.search.SearchFragment"
         android:label="@string/title_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_navigation_search_to_searchedGameFragment"
+            app:destination="@id/searchedGameFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_on_sale"
         android:name="com.example.gamescout.ui.on_sale.OnSaleFragment"
         android:label="@string/title_on_sale"
-        tools:layout="@layout/fragment_on_sale" />
+        tools:layout="@layout/fragment_on_sale" >
+        <action
+            android:id="@+id/action_navigation_on_sale_to_onSaleGameFragment"
+            app:destination="@id/onSaleGameFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_wish_list"
         android:name="com.example.gamescout.ui.wish_list.WishListFragment"
         android:label="@string/title_wish_list"
         tools:layout="@layout/fragment_wish_list" />
+    <fragment
+        android:id="@+id/searchedGameFragment"
+        android:name="com.example.gamescout.ui.search.SearchedGameFragment"
+        android:label="fragment_searched_game"
+        tools:layout="@layout/fragment_searched_game" />
+    <fragment
+        android:id="@+id/onSaleGameFragment"
+        android:name="com.example.gamescout.ui.on_sale.OnSaleGameFragment"
+        android:label="fragment_on_sale_game"
+        tools:layout="@layout/fragment_on_sale_game" />
 </navigation>

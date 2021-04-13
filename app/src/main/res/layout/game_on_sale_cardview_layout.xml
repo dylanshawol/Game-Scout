@@ -2,78 +2,116 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/onSaleCardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_margin="5dp"
     app:cardBackgroundColor="@color/primary_color"
     app:cardCornerRadius="15dp"
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/primary_color">
+        android:layout_height="wrap_content"
+        android:background="@color/secondary_color">
 
         <ImageView
-            android:id="@+id/linkIcon"
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchName"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/line" />
+
+        <ImageView
+            android:id="@+id/onSaleAddButtonBackground"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/searchLinkBackground"
+            app:layout_constraintEnd_toStartOf="@+id/searchLinkBackground"
+            app:layout_constraintTop_toTopOf="@+id/searchLinkBackground"
+            app:srcCompat="@drawable/button_background" />
+
+        <ImageView
+            android:id="@+id/onSaleAddIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:elevation="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/buttonBackground"
-            app:layout_constraintEnd_toEndOf="@+id/buttonBackground"
-            app:layout_constraintStart_toStartOf="@+id/buttonBackground"
-            app:layout_constraintTop_toTopOf="@+id/buttonBackground"
+            app:layout_constraintBottom_toBottomOf="@+id/onSaleAddButtonBackground"
+            app:layout_constraintEnd_toEndOf="@+id/onSaleAddButtonBackground"
+            app:layout_constraintStart_toStartOf="@+id/onSaleAddButtonBackground"
+            app:layout_constraintTop_toTopOf="@+id/onSaleAddButtonBackground"
+            app:srcCompat="@drawable/ic_baseline_add_24" />
+
+        <ImageView
+            android:id="@+id/searchLinkIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/searchLinkBackground"
+            app:layout_constraintEnd_toEndOf="@+id/searchLinkBackground"
+            app:layout_constraintStart_toStartOf="@+id/searchLinkBackground"
+            app:layout_constraintTop_toTopOf="@+id/searchLinkBackground"
             app:srcCompat="@drawable/ic_baseline_link_24" />
 
         <ImageView
-            android:id="@+id/buttonBackground"
+            android:id="@+id/searchLinkBackground"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="13dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
             app:srcCompat="@drawable/button_background" />
 
         <TextView
-            android:id="@+id/onSaleNormalPrice"
-            android:background="@drawable/strikethrough"
+            android:id="@+id/searchNormalPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/roboto_slab"
-            android:text="Game Price"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/card_view_price_strikethrough"
+            android:fontFamily="@font/dosis"
+            android:text="$XX.XX"
             android:textColor="@color/custom_white"
-            android:textSize="18sp"
+            android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/onSaleName"
-            app:layout_constraintTop_toBottomOf="@+id/onSaleName" />
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/onSalePrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:fontFamily="@font/roboto_slab"
-            android:text="Game Price"
+            android:layout_marginStart="5dp"
+            android:fontFamily="@font/dosis"
+            android:text="$XX.XX"
             android:textColor="@color/custom_white"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/onSaleNormalPrice"
-            app:layout_constraintStart_toEndOf="@+id/onSaleNormalPrice"
-            app:layout_constraintTop_toTopOf="@+id/onSaleNormalPrice" />
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/searchNormalPrice"
+            app:layout_constraintStart_toEndOf="@+id/searchNormalPrice"
+            app:layout_constraintTop_toTopOf="@+id/searchNormalPrice" />
 
         <TextView
-            android:id="@+id/onSaleName"
+            android:id="@+id/searchName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/roboto_slab"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/dosis_semibold"
             android:text="Game Name"
             android:textColor="@color/custom_white"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,26 +5,35 @@ public class Game {
     private String gameNormalPrice;
     private String gameImage;
     private String metacriticScore;
+    private String steamAppID;
+    private String steamRatingText;
+    private String steamRatingCount;
 
     private String gameSalePrice;
     private String gameSavings;
-    private String isOnSale;
+
+
 
     // Regular game
-    public Game(String gameName, String gameNormalPrice, String gameImage) {
+    public Game(String gameName, String gameNormalPrice, String gameImage, String steamAppID) {
         this.gameName = gameName;
         this.gameNormalPrice = gameNormalPrice;
         this.gameImage = gameImage;
+        this.steamAppID = steamAppID;
     }
 
     // On sale game
-    public Game(String gameName, String gameNormalPrice, String gameImage, String metacriticScore, String gameSalePrice, String gameSavings) {
+    public Game(String gameName, String gameNormalPrice, String gameImage, String steamAppID,
+                String metacriticScore, String gameSalePrice, String gameSavings, String steamRatingCount, String steamRatingText) {
         this.gameName = gameName;
         this.gameNormalPrice = gameNormalPrice;
         this.gameImage = gameImage;
+        this.steamAppID = steamAppID;
         this.metacriticScore = metacriticScore;
         this.gameSalePrice = gameSalePrice;
         this.gameSavings = gameSavings;
+        this.steamRatingCount = steamRatingCount;
+        this.steamRatingText = steamRatingText;
     }
 
     public String getGameName() {
@@ -73,5 +82,29 @@ public class Game {
 
     public void setGameSavings(String gameSavings) {
         this.gameSavings = gameSavings;
+    }
+
+    public String getSteamAppID() {
+        return steamAppID;
+    }
+
+    public void setSteamAppID(String steamAppID) {
+        this.steamAppID = steamAppID;
+    }
+
+    public String getSteamRatingText() {
+        return steamRatingText;
+    }
+
+    public void setSteamRatingText(String steamRatingText) {
+        this.steamRatingText = steamRatingText;
+    }
+
+    public String getSteamRatingCount() {
+        return steamRatingCount;
+    }
+
+    public void setSteamRatingCount(String steamRatingCount) {
+        this.steamRatingCount = steamRatingCount;
     }
 }
