@@ -1,5 +1,7 @@
 package com.example.gamescout.ui.search;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gamescout.R;
+import com.example.gamescout.ui.api.APIConst;
 import com.example.gamescout.ui.api.Game;
 import com.example.gamescout.ui.database.WishListDatabase;
 import com.squareup.picasso.Picasso;
@@ -76,6 +79,7 @@ public class SearchedGameFragment extends Fragment {
         ImageView searchedGameImage = view.findViewById(R.id.searchedGameImage);
         TextView searchedGamePrice = view.findViewById(R.id.searchedGamePrice);
         Button addGameToWishList = view.findViewById(R.id.searchedGameButton);
+        ImageView steamIcon = view.findViewById(R.id.searchedSteamIcon);
 
         if (getArguments() != null) {
             String gameName = getArguments().getString("gameName");
@@ -85,8 +89,14 @@ public class SearchedGameFragment extends Fragment {
 
             ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(gameName);
             searchedGameName.setText(gameName);
-            searchedGamePrice.setText(gamePrice);
+            searchedGamePrice.setText("$" + gamePrice);
             Picasso.get().load(gameImage).resize(960, 360).into(searchedGameImage);
+
+            steamIcon.setOnClickListener(view1 -> {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(APIConst.STEAM_APP_ID_URL + getArguments().getString("steamAppID")));
+
+                if (intent.resolveActivity(getActivity().getPackageManager()) != null) getActivity().startActivity(intent);
+            });
 
             addGameToWishList.setOnClickListener(view1 -> {
                 WishListDatabase db = new WishListDatabase(getContext());

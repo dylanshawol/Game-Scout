@@ -23,20 +23,6 @@
             android:paddingBottom="15dp"
             tools:context=".ui.on_sale.OnSaleGameFragment">
 
-            <TextView
-                android:id="@+id/openOnMetacritic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:fontFamily="@font/dosis"
-                android:text="Read Metacritic Reviews"
-                android:textColor="@color/secondary_color"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/metacriticIcon"
-                app:layout_constraintStart_toEndOf="@+id/metacriticIcon"
-                app:layout_constraintTop_toTopOf="@+id/metacriticIcon" />
-
             <ImageView
                 android:id="@+id/metacriticIcon"
                 android:layout_width="30dp"
@@ -77,14 +63,16 @@
                 android:id="@+id/metacriticRatingLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
                 android:fontFamily="@font/dosis"
                 android:text="Metacritic Rating:"
                 android:textColor="@color/secondary_color"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/metacriticIcon"
-                app:layout_constraintTop_toBottomOf="@+id/openOnMetacritic" />
+                app:layout_constraintBottom_toBottomOf="@+id/metacriticIcon"
+                app:layout_constraintStart_toEndOf="@+id/metacriticIcon"
+                app:layout_constraintTop_toTopOf="@+id/metacriticIcon"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/numOfSteamRatings"
@@ -103,7 +91,7 @@
                 android:id="@+id/numOfRatingsLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/dosis"
                 android:text="Number of Ratings:"
                 android:textColor="@color/secondary_color"
@@ -116,14 +104,14 @@
                 android:id="@+id/steamRatingLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/dosis"
                 android:text="Steam Rating:"
                 android:textColor="@color/secondary_color"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/steamIcon"
-                app:layout_constraintTop_toBottomOf="@+id/steamIcon" />
+                app:layout_constraintStart_toStartOf="@+id/onSaleSteamIcon"
+                app:layout_constraintTop_toBottomOf="@+id/onSaleSteamIcon" />
 
             <TextView
                 android:id="@+id/steamRating"
@@ -140,7 +128,7 @@
                 app:layout_constraintTop_toTopOf="@+id/steamRatingLabel" />
 
             <TextView
-                android:id="@+id/openOnSteam"
+                android:id="@+id/onSaleOpenOnSteam"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -149,16 +137,16 @@
                 android:textColor="@color/secondary_color"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/steamIcon"
-                app:layout_constraintStart_toEndOf="@+id/steamIcon"
-                app:layout_constraintTop_toTopOf="@+id/steamIcon" />
+                app:layout_constraintBottom_toBottomOf="@+id/onSaleSteamIcon"
+                app:layout_constraintStart_toEndOf="@+id/onSaleSteamIcon"
+                app:layout_constraintTop_toTopOf="@+id/onSaleSteamIcon" />
 
             <ImageView
-                android:id="@+id/steamIcon"
+                android:id="@+id/onSaleSteamIcon"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:src="@drawable/ic_steam_icon"
                 app:layout_constraintStart_toStartOf="@+id/searchedGameDescriptionBox"
                 app:layout_constraintTop_toBottomOf="@+id/onSaleGamePrice"

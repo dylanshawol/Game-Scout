@@ -1,6 +1,8 @@
 package com.example.gamescout.ui.on_sale;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gamescout.R;
+import com.example.gamescout.ui.api.APIConst;
 import com.example.gamescout.ui.api.Game;
 import com.example.gamescout.ui.database.WishListDatabase;
 import com.squareup.picasso.Picasso;
@@ -93,8 +96,8 @@ public class OnSaleGameFragment extends Fragment {
         TextView onSaleSteamRatingCount = view.findViewById(R.id.numOfSteamRatings);
 
 
+        ImageView onSaleGameSteamIcon = view.findViewById(R.id.onSaleSteamIcon);
         ImageView onSaleGameMetacriticIcon = view.findViewById(R.id.metacriticIcon);
-        TextView onSaleGameMetacriticLabel = view.findViewById(R.id.openOnMetacritic);
         ImageView onSaleGameMetacriticRatingBackground = view.findViewById(R.id.onSaleGameMetacriticRatingBackground);
         TextView onSaleGameMetacriticRating = view.findViewById(R.id.onSaleGameMetacriticRating);
         TextView onSaleGameMetacriticRatingLabel = view.findViewById(R.id.metacriticRatingLabel);
@@ -121,6 +124,12 @@ public class OnSaleGameFragment extends Fragment {
 
             ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(onSaleGameNameText);
 
+            onSaleGameSteamIcon.setOnClickListener(view1 -> {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(APIConst.STEAM_APP_ID_URL + steamAppID));
+
+                if (intent.resolveActivity(getActivity().getPackageManager()) != null) getActivity().startActivity(intent);
+            });
+
 
             int metacriticScoreNum = Integer.parseInt(metacriticScore);
 
@@ -133,7 +142,6 @@ public class OnSaleGameFragment extends Fragment {
                     onSaleGameMetacriticRatingBackground.setVisibility(View.GONE);
                     onSaleGameMetacriticRatingLabel.setVisibility(View.GONE);
                     onSaleGameMetacriticIcon.setVisibility(View.GONE);
-                    onSaleGameMetacriticLabel.setVisibility(View.GONE);
                 }
 
                 onSaleGameMetacriticRating.setText(String.valueOf(metacriticScoreNum));

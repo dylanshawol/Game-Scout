@@ -87,7 +87,6 @@ public class CustomGamesOnSaleAdapter extends RecyclerView.Adapter<CustomGamesOn
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(APIConst.STEAM_APP_ID_URL + game.getSteamAppID()));
 
             if (intent.resolveActivity(activity.getPackageManager()) != null) activity.startActivity(intent);
-
         });
 
         holder.onSaleCardView.setOnClickListener(view -> {

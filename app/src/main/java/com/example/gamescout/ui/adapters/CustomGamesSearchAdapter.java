@@ -3,6 +3,8 @@ package com.example.gamescout.ui.adapters;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gamescout.R;
+import com.example.gamescout.ui.api.APIConst;
 import com.example.gamescout.ui.api.Game;
 import com.example.gamescout.ui.database.WishListDatabase;
 
@@ -53,7 +56,9 @@ public class CustomGamesSearchAdapter extends RecyclerView.Adapter<CustomGamesSe
         holder.gamePrice.setText("$" + game.getGameNormalPrice());
 
         holder.linkIcon.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(APIConst.STEAM_APP_ID_URL + game.getSteamAppID()));
 
+            if (intent.resolveActivity(activity.getPackageManager()) != null) activity.startActivity(intent);
         });
 
         holder.addToWishListIcon.setOnClickListener(view -> {
@@ -103,6 +108,7 @@ public class CustomGamesSearchAdapter extends RecyclerView.Adapter<CustomGamesSe
         protected CardView searchedGameCardView;
 
 
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             gameName = itemView.findViewById(R.id.searchNameCV);
@@ -110,6 +116,7 @@ public class CustomGamesSearchAdapter extends RecyclerView.Adapter<CustomGamesSe
             linkIcon = itemView.findViewById(R.id.searchLinkBackgroundCV);
             addToWishListIcon = itemView.findViewById(R.id.searchAddBackgroundCV);
             searchedGameCardView = itemView.findViewById(R.id.searchedGameCardView);
+
         }
     }
 }

@@ -115,14 +115,6 @@ public class CustomWishListAdapter extends RecyclerView.Adapter<CustomWishListAd
 
         });
 
-        holder.wishListCardView.setOnClickListener(view -> {
-            Bundle bundle = new Bundle();
-            bundle.putString("gameName", game.getGameName());
-            bundle.putString("gameImage", game.getGameImage());
-            bundle.putString("gameNormalPrice", game.getGameNormalPrice());
-
-            Navigation.findNavController(view).navigate(R.id.onSaleGameFragment, bundle);
-        });
     }
 
     @Override
