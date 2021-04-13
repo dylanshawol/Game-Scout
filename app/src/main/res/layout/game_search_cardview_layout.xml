@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/searchedGameCardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
@@ -23,34 +24,34 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchName"
+            app:layout_constraintTop_toBottomOf="@+id/searchNameCV"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/line" />
 
         <ImageView
-            android:id="@+id/searchLinkIcon"
+            android:id="@+id/searchLinkIconCV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:elevation="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/searchLinkBackground"
-            app:layout_constraintEnd_toEndOf="@+id/searchLinkBackground"
-            app:layout_constraintStart_toStartOf="@+id/searchLinkBackground"
-            app:layout_constraintTop_toTopOf="@+id/searchLinkBackground"
+            app:layout_constraintBottom_toBottomOf="@+id/searchLinkBackgroundCV"
+            app:layout_constraintEnd_toEndOf="@+id/searchLinkBackgroundCV"
+            app:layout_constraintStart_toStartOf="@+id/searchLinkBackgroundCV"
+            app:layout_constraintTop_toTopOf="@+id/searchLinkBackgroundCV"
             app:srcCompat="@drawable/ic_baseline_link_24" />
 
         <ImageView
-            android:id="@+id/searchAddIcon"
+            android:id="@+id/searchAddIconCV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:elevation="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/searchAddBackground"
-            app:layout_constraintEnd_toEndOf="@+id/searchAddBackground"
-            app:layout_constraintStart_toStartOf="@+id/searchAddBackground"
-            app:layout_constraintTop_toTopOf="@+id/searchAddBackground"
+            app:layout_constraintBottom_toBottomOf="@+id/searchAddBackgroundCV"
+            app:layout_constraintEnd_toEndOf="@+id/searchAddBackgroundCV"
+            app:layout_constraintStart_toStartOf="@+id/searchAddBackgroundCV"
+            app:layout_constraintTop_toTopOf="@+id/searchAddBackgroundCV"
             app:srcCompat="@drawable/ic_baseline_add_24" />
 
         <ImageView
-            android:id="@+id/searchLinkBackground"
+            android:id="@+id/searchLinkBackgroundCV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
@@ -62,17 +63,17 @@
             app:srcCompat="@drawable/button_background" />
 
         <ImageView
-            android:id="@+id/searchAddBackground"
+            android:id="@+id/searchAddBackgroundCV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/searchLinkBackground"
-            app:layout_constraintEnd_toStartOf="@+id/searchLinkBackground"
-            app:layout_constraintTop_toTopOf="@+id/searchLinkBackground"
+            app:layout_constraintBottom_toBottomOf="@+id/searchLinkBackgroundCV"
+            app:layout_constraintEnd_toStartOf="@+id/searchLinkBackgroundCV"
+            app:layout_constraintTop_toTopOf="@+id/searchLinkBackgroundCV"
             app:srcCompat="@drawable/button_background" />
 
         <TextView
-            android:id="@+id/searchNormalPrice"
+            android:id="@+id/searchNormalPriceCV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -87,7 +88,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/searchName"
+            android:id="@+id/searchNameCV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

@@ -3,7 +3,9 @@ package com.example.gamescout.ui.on_sale;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gamescout.R;
 import com.example.gamescout.ui.api.Game;
@@ -86,11 +89,17 @@ public class OnSaleGameFragment extends Fragment {
         onSaleGameImage = view.findViewById(R.id.onSaleGameImage);
         TextView onSaleGameNormalPrice = view.findViewById(R.id.onSaleGameNormalPrice);
         TextView onSaleGameSalePrice = view.findViewById(R.id.onSaleGamePrice);
+        TextView onSaleSteamRating = view.findViewById(R.id.steamRating);
+        TextView onSaleSteamRatingCount = view.findViewById(R.id.numOfSteamRatings);
+
+
+        ImageView onSaleGameMetacriticIcon = view.findViewById(R.id.metacriticIcon);
+        TextView onSaleGameMetacriticLabel = view.findViewById(R.id.openOnMetacritic);
         ImageView onSaleGameMetacriticRatingBackground = view.findViewById(R.id.onSaleGameMetacriticRatingBackground);
         TextView onSaleGameMetacriticRating = view.findViewById(R.id.onSaleGameMetacriticRating);
         TextView onSaleGameMetacriticRatingLabel = view.findViewById(R.id.metacriticRatingLabel);
 
-        Button addToWishList = view.findViewById(R.id.searchedAddToWishListButton);
+        Button addToWishList = view.findViewById(R.id.searchedGameButton);
 
         if (getArguments() != null) {
             onSaleGameNameText = getArguments().getString("gameName");
@@ -98,8 +107,8 @@ public class OnSaleGameFragment extends Fragment {
             onSaleGameNormalPriceText = getArguments().getString("gameNormalPrice");
             onSaleGameSalePriceText = getArguments().getString("gameSalePrice");
             steamAppID = getArguments().getString("steamAppID");
-            metacriticScore = getArguments().getString("metacriticScore");
             savings = getArguments().getString("savings");
+            metacriticScore = getArguments().getString("metacriticScore");
             steamRatingCount = getArguments().getString("steamRatingCount");
             steamRatingText = getArguments().getString("steamRatingText");
 
@@ -107,6 +116,10 @@ public class OnSaleGameFragment extends Fragment {
             Picasso.get().load(onSaleGameImageText).resize(960, 360).into(onSaleGameImage);
             onSaleGameNormalPrice.setText("$" + onSaleGameNormalPriceText);
             onSaleGameSalePrice.setText("$" + onSaleGameSalePriceText);
+            onSaleSteamRating.setText(steamRatingText);
+            onSaleSteamRatingCount.setText(steamRatingCount);
+
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(onSaleGameNameText);
 
 
             int metacriticScoreNum = Integer.parseInt(metacriticScore);
@@ -119,18 +132,25 @@ public class OnSaleGameFragment extends Fragment {
                     onSaleGameMetacriticRating.setVisibility(View.GONE);
                     onSaleGameMetacriticRatingBackground.setVisibility(View.GONE);
                     onSaleGameMetacriticRatingLabel.setVisibility(View.GONE);
+                    onSaleGameMetacriticIcon.setVisibility(View.GONE);
+                    onSaleGameMetacriticLabel.setVisibility(View.GONE);
                 }
 
                 onSaleGameMetacriticRating.setText(String.valueOf(metacriticScoreNum));
         }
 
         addToWishList.setOnClickListener(view1 -> {
-          // Add game to wish list and database
+          // Add game to wish list/database
             WishListDatabase db = new WishListDatabase(getContext());
-            db.addGame(new Game(onSaleGameNameText, onSaleGameNormalPriceText, onSaleGameImageText, steamAppID, metacriticScore, onSaleGameSalePriceText, savings, steamRatingCount, steamRatingText));
-            db.close();
-        });
 
+            db.addGame(new Game(onSaleGameNameText, onSaleGameImageText, onSaleGameNormalPriceText, onSaleGameSalePriceText, savings, steamAppID, steamRatingText, steamRatingCount, metacriticScore));
+
+            db.close();
+
+            Toast.makeText(getContext(), "Game added to wish list!", Toast.LENGTH_SHORT).show();
+
+            Navigation.findNavController(view).navigate(R.id.navigation_wish_list);
+        });
 
         return view;
     }

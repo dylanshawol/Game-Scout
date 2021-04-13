@@ -13,7 +13,7 @@
 
     <item
         android:id="@+id/navigation_wish_list"
-        android:icon="@drawable/ic_baseline_list_add_24"
+        android:icon="@drawable/ic_baseline_playlist_add_24"
         android:title="@string/title_wish_list" />
 
 </menu>

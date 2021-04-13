@@ -23,43 +23,56 @@
             android:paddingBottom="15dp"
             tools:context=".ui.on_sale.OnSaleGameFragment">
 
+            <TextView
+                android:id="@+id/searchedOpenOnSteam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/dosis"
+                android:text="Open On Steam"
+                android:textColor="@color/secondary_color"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/searchedSteamIcon"
+                app:layout_constraintStart_toEndOf="@+id/searchedSteamIcon"
+                app:layout_constraintTop_toTopOf="@+id/searchedSteamIcon" />
+
+            <ImageView
+                android:id="@+id/searchedSteamIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/ic_steam_icon"
+                app:layout_constraintStart_toStartOf="@+id/searchedGameDescriptionBox"
+                app:layout_constraintTop_toBottomOf="@+id/searchedGamePrice"
+                app:srcCompat="@drawable/ic_steam_icon" />
+
             <ImageView
                 android:id="@+id/searchedGameDescriptionBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
                 android:adjustViewBounds="true"
-                android:src="@drawable/game_description_box"
+                android:src="@drawable/on_sale_game_description_box"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/searchedGameName" />
-
-            <TextView
-                android:id="@+id/searchedGameNormalPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/fragment_price_strikethrough"
-                android:fontFamily="@font/dosis"
-                android:text="$XX.XX"
-                android:textColor="@color/secondary_color"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/searchedGameDescriptionBox"
-                app:layout_constraintTop_toTopOf="@+id/searchedGameDescriptionBox" />
+                app:layout_constraintTop_toBottomOf="@+id/searchedGameName"
+                app:srcCompat="@drawable/searched_game_description_box" />
 
             <TextView
                 android:id="@+id/searchedGamePrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:fontFamily="@font/dosis"
                 android:text="$XX.XX"
                 android:textColor="@color/secondary_color"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/searchedGameNormalPrice"
-                app:layout_constraintTop_toBottomOf="@+id/searchedGameNormalPrice" />
+                app:layout_constraintEnd_toEndOf="@+id/searchedGameDescriptionBox"
+                app:layout_constraintStart_toStartOf="@+id/searchedGameDescriptionBox"
+                app:layout_constraintTop_toTopOf="@+id/searchedGameDescriptionBox" />
 
             <TextView
                 android:id="@+id/searchedGameName"
@@ -69,7 +82,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="25dp"
                 android:fontFamily="@font/dosis_semibold"
-                android:text="On Sale Game Name"
+                android:text="Searched Game Name"
                 android:textAlignment="center"
                 android:textColor="@color/secondary_color"
                 android:textSize="30sp"
@@ -80,10 +93,10 @@
 
             <ImageView
                 android:id="@+id/searchedGameImage"
-                android:layout_width="200dp"
-                android:layout_height="250dp"
+                android:layout_width="240dp"
+                android:layout_height="90dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginEnd="10dp"
                 android:adjustViewBounds="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -93,8 +106,8 @@
                 tools:src="@tools:sample/avatars" />
 
             <Button
-                android:id="@+id/searchedAddToWishListButton"
-                android:layout_width="325dp"
+                android:id="@+id/searchedGameButton"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="@color/secondary_color"
@@ -103,6 +116,7 @@
                 android:textColor="@color/custom_white"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                app:cornerRadius="12dp"
                 app:layout_constraintBottom_toBottomOf="@+id/searchedGameDescriptionBox"
                 app:layout_constraintEnd_toEndOf="@+id/searchedGameDescriptionBox"
                 app:layout_constraintStart_toStartOf="@+id/searchedGameDescriptionBox" />

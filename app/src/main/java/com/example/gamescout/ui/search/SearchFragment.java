@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.gamescout.R;
+import com.example.gamescout.ui.adapters.CustomGamesSearchAdapter;
 import com.example.gamescout.ui.api.APIConst;
 import com.example.gamescout.ui.api.Game;
 import com.example.gamescout.ui.api.GameSingleton;
@@ -70,7 +71,7 @@ public class SearchFragment extends Fragment {
                                     gameImage = response.getJSONObject(i).getString(APIConst.IMAGE_KEY);
                                     steamAppID = response.getJSONObject(i).getString(APIConst.STEAM_APP_ID_KEY);
 
-                                    searchedGamesList.add(new Game(gameName, gameNormalPrice, gameImage, steamAppID));
+                                    searchedGamesList.add(new Game(gameName, gameImage, gameNormalPrice, steamAppID));
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -79,7 +80,7 @@ public class SearchFragment extends Fragment {
 
                         RecyclerView recyclerView = view.findViewById(R.id.searchRecycler);
 
-                        recyclerView.setAdapter(new CustomGamesSearchAdapter(searchedGamesList, getContext()));
+                        recyclerView.setAdapter(new CustomGamesSearchAdapter(searchedGamesList, getContext(), getActivity()));
 
                         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -102,68 +103,5 @@ public class SearchFragment extends Fragment {
 
         return view;
 
-    }
-
-
-    public static class CustomGamesSearchAdapter extends RecyclerView.Adapter<CustomGamesSearchAdapter.ViewHolder> {
-        ArrayList<Game> gamesSearchList;
-        Context context;
-
-        public CustomGamesSearchAdapter(ArrayList<Game> gamesList, Context context) {
-            this.gamesSearchList = gamesList;
-            this.context = context;
-        }
-
-        @NonNull
-        @Override
-        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.game_search_cardview_layout, parent, false);
-            return new CustomGamesSearchAdapter.ViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            Game game = this.gamesSearchList.get(position);
-
-            holder.gameName.setText(game.getGameName());
-            holder.gamePrice.setText("$" + game.getGameNormalPrice());
-
-            holder.linkIcon.setOnClickListener(view -> {
-
-            });
-
-            holder.addToWishListIcon.setOnClickListener(view -> {
-                WishListDatabase db = new WishListDatabase(context);
-                db.addGame(new Game(game.getGameName(), game.getGameNormalPrice(), game.getGameImage(), game.getSteamAppID()));
-                db.close();
-            });
-
-
-        }
-
-        @Override
-        public int getItemCount() {
-            if (gamesSearchList == null) {
-                return -1;
-            }
-            return gamesSearchList.size();
-        }
-
-        class ViewHolder extends RecyclerView.ViewHolder {
-            protected TextView gameName;
-            protected TextView gamePrice;
-            protected ImageView linkIcon;
-            protected ImageView addToWishListIcon;
-
-
-            public ViewHolder(@NonNull View itemView) {
-                super(itemView);
-                gameName = itemView.findViewById(R.id.searchName);
-                gamePrice = itemView.findViewById(R.id.searchNormalPrice);
-                linkIcon = itemView.findViewById(R.id.searchLinkBackground);
-                addToWishListIcon = itemView.findViewById(R.id.searchAddBackground
-                );
-            }
-        }
     }
 }

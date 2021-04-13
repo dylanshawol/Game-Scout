@@ -7,6 +7,30 @@
     android:background="@color/custom_white"
     tools:context=".ui.search.SearchFragment">
 
+    <ImageView
+        android:id="@+id/searchArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:rotation="90"
+        android:src="@drawable/ic_curve_arrow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+    <TextView
+        android:id="@+id/searchText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:fontFamily="@font/dosis_extrabold"
+        android:text="Search for a game!"
+        android:textColor="@color/secondary_color"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="@+id/searchArrow"
+        app:layout_constraintStart_toEndOf="@+id/searchArrow"
+        app:layout_constraintTop_toBottomOf="@+id/searchArrow" />
+
     <SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
@@ -19,7 +43,9 @@
         android:id="@+id/searchRecycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/custom_white"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchView" />
 

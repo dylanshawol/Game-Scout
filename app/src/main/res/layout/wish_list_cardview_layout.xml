@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/onSaleCardView"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/wishListCardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
+    android:background="@color/primary_color"
     app:cardBackgroundColor="@color/primary_color"
     app:cardCornerRadius="15dp"
     app:cardUseCompatPadding="true">
@@ -15,63 +17,64 @@
         android:background="@color/secondary_color">
 
         <ImageView
-            android:id="@+id/lineCV"
+            android:id="@+id/wishListLineCV"
             android:layout_width="match_parent"
             android:layout_height="10dp"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
+            android:adjustViewBounds="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/onSaleNameCV"
+            app:layout_constraintTop_toBottomOf="@+id/wishListNameCV"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/line" />
 
         <ImageView
-            android:id="@+id/onSaleAddButtonBackgroundCV"
+            android:id="@+id/wishListAddButtonBackgroundCV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/onSaleLinkBackgroundCV"
-            app:layout_constraintEnd_toStartOf="@+id/onSaleLinkBackgroundCV"
-            app:layout_constraintTop_toTopOf="@+id/onSaleLinkBackgroundCV"
+            app:layout_constraintBottom_toBottomOf="@+id/wishListLinkBackgroundCV"
+            app:layout_constraintEnd_toStartOf="@+id/wishListLinkBackgroundCV"
+            app:layout_constraintTop_toTopOf="@+id/wishListLinkBackgroundCV"
             app:srcCompat="@drawable/button_background" />
 
         <ImageView
-            android:id="@+id/onSaleAddIconCV"
+            android:id="@+id/wishListDeleteIconCV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:elevation="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/onSaleAddButtonBackgroundCV"
-            app:layout_constraintEnd_toEndOf="@+id/onSaleAddButtonBackgroundCV"
-            app:layout_constraintStart_toStartOf="@+id/onSaleAddButtonBackgroundCV"
-            app:layout_constraintTop_toTopOf="@+id/onSaleAddButtonBackgroundCV"
-            app:srcCompat="@drawable/ic_baseline_add_24" />
+            app:layout_constraintBottom_toBottomOf="@+id/wishListAddButtonBackgroundCV"
+            app:layout_constraintEnd_toEndOf="@+id/wishListAddButtonBackgroundCV"
+            app:layout_constraintStart_toStartOf="@+id/wishListAddButtonBackgroundCV"
+            app:layout_constraintTop_toTopOf="@+id/wishListAddButtonBackgroundCV"
+            app:srcCompat="@drawable/ic_baseline_delete_24" />
 
         <ImageView
-            android:id="@+id/onSaleLinkIconCV"
+            android:id="@+id/wishListLinkIconCV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:elevation="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/onSaleLinkBackgroundCV"
-            app:layout_constraintEnd_toEndOf="@+id/onSaleLinkBackgroundCV"
-            app:layout_constraintStart_toStartOf="@+id/onSaleLinkBackgroundCV"
-            app:layout_constraintTop_toTopOf="@+id/onSaleLinkBackgroundCV"
+            app:layout_constraintBottom_toBottomOf="@+id/wishListLinkBackgroundCV"
+            app:layout_constraintEnd_toEndOf="@+id/wishListLinkBackgroundCV"
+            app:layout_constraintStart_toStartOf="@+id/wishListLinkBackgroundCV"
+            app:layout_constraintTop_toTopOf="@+id/wishListLinkBackgroundCV"
             app:srcCompat="@drawable/ic_baseline_link_24" />
 
         <ImageView
-            android:id="@+id/onSaleLinkBackgroundCV"
+            android:id="@+id/wishListLinkBackgroundCV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:layout_marginBottom="13dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/lineCV"
-            app:layout_constraintTop_toBottomOf="@+id/lineCV"
+            app:layout_constraintEnd_toEndOf="@+id/wishListLineCV"
+            app:layout_constraintTop_toBottomOf="@+id/wishListLineCV"
             app:srcCompat="@drawable/button_background" />
 
         <TextView
-            android:id="@+id/onSaleNormalPriceCV"
+            android:id="@+id/wishListNormalPriceCV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -80,29 +83,28 @@
             android:fontFamily="@font/dosis"
             android:text="$XX.XX"
             android:textColor="@color/custom_white"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/lineCV"
-            app:layout_constraintTop_toBottomOf="@+id/lineCV"
+            app:layout_constraintStart_toStartOf="@+id/wishListLineCV"
+            app:layout_constraintTop_toBottomOf="@+id/wishListLineCV"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/onSalePriceCV"
+            android:id="@+id/wishListPriceCV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:fontFamily="@font/dosis"
             android:text="$XX.XX"
             android:textColor="@color/custom_white"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/onSaleNormalPriceCV"
-            app:layout_constraintStart_toEndOf="@+id/onSaleNormalPriceCV"
-            app:layout_constraintTop_toTopOf="@+id/onSaleNormalPriceCV" />
+            app:layout_constraintBottom_toBottomOf="@+id/wishListNormalPriceCV"
+            app:layout_constraintStart_toEndOf="@+id/wishListNormalPriceCV"
+            app:layout_constraintTop_toTopOf="@+id/wishListNormalPriceCV" />
 
         <TextView
-            android:id="@+id/onSaleNameCV"
+            android:id="@+id/wishListNameCV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -110,7 +112,7 @@
             android:text="Game Name"
             android:textColor="@color/custom_white"
             android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="@+id/lineCV"
+            app:layout_constraintStart_toStartOf="@+id/wishListLineCV"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

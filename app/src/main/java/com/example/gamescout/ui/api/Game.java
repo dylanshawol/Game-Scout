@@ -1,40 +1,95 @@
 package com.example.gamescout.ui.api;
 
-public class Game {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Game implements Parcelable {
+    private int id;
     private String gameName;
-    private String gameNormalPrice;
     private String gameImage;
-    private String metacriticScore;
+    private String gameNormalPrice;
+    private String gameSalePrice;
+    private String gameSavings;
     private String steamAppID;
     private String steamRatingText;
     private String steamRatingCount;
-
-    private String gameSalePrice;
-    private String gameSavings;
-
+    private String metacriticScore;
 
 
     // Regular game
-    public Game(String gameName, String gameNormalPrice, String gameImage, String steamAppID) {
+    public Game(String gameName, String gameImage, String gameNormalPrice, String steamAppID) {
         this.gameName = gameName;
-        this.gameNormalPrice = gameNormalPrice;
         this.gameImage = gameImage;
+        this.gameNormalPrice = gameNormalPrice;
         this.steamAppID = steamAppID;
     }
 
     // On sale game
-    public Game(String gameName, String gameNormalPrice, String gameImage, String steamAppID,
-                String metacriticScore, String gameSalePrice, String gameSavings, String steamRatingCount, String steamRatingText) {
+    public Game(String gameName, String gameImage, String gameNormalPrice, String gameSalePrice, String gameSavings, String steamAppID,
+                String steamRatingText, String steamRatingCount, String metacriticScore) {
         this.gameName = gameName;
-        this.gameNormalPrice = gameNormalPrice;
         this.gameImage = gameImage;
-        this.steamAppID = steamAppID;
-        this.metacriticScore = metacriticScore;
+        this.gameNormalPrice = gameNormalPrice;
         this.gameSalePrice = gameSalePrice;
         this.gameSavings = gameSavings;
-        this.steamRatingCount = steamRatingCount;
+        this.steamAppID = steamAppID;
         this.steamRatingText = steamRatingText;
+        this.steamRatingCount = steamRatingCount;
+        this.metacriticScore = metacriticScore;
     }
+
+    // DB read game
+    public Game(int id, String gameName, String gameImage, String gameNormalPrice, String gameSalePrice, String gameSavings, String steamAppID,
+                String steamRatingText, String steamRatingCount, String metacriticScore) {
+        this.id = id;
+        this.gameName = gameName;
+        this.gameImage = gameImage;
+        this.gameNormalPrice = gameNormalPrice;
+        this.gameSalePrice = gameSalePrice;
+        this.gameSavings = gameSavings;
+        this.steamAppID = steamAppID;
+        this.steamRatingText = steamRatingText;
+        this.steamRatingCount = steamRatingCount;
+        this.metacriticScore = metacriticScore;
+    }
+
+    public Game(Parcel in) {
+        id = in.readInt();
+        gameName = in.readString();
+        gameImage = in.readString();
+        gameNormalPrice = in.readString();
+        gameSalePrice = in.readString();
+        gameSavings = in.readString();
+        steamAppID = in.readString();
+        steamRatingText = in.readString();
+        steamRatingCount = in.readString();
+        metacriticScore = in.readString();
+    }
+
+    @Override
+    public int describeContents() { return 0; }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(gameName);
+        parcel.writeString(gameImage);
+        parcel.writeString(gameNormalPrice);
+        parcel.writeString(gameSalePrice);
+        parcel.writeString(gameSavings);
+        parcel.writeString(steamAppID);
+        parcel.writeString(steamRatingText);
+        parcel.writeString(steamRatingCount);
+        parcel.writeString(metacriticScore);
+    }
+
+    public static final Creator<Game> CREATOR = new Creator<Game>() {
+        @Override
+        public Game createFromParcel(Parcel parcel) { return new Game(parcel); }
+
+        @Override
+        public Game[] newArray(int i) { return new Game[i]; }
+    };
 
     public String getGameName() {
         return gameName;
@@ -106,5 +161,13 @@ public class Game {
 
     public void setSteamRatingCount(String steamRatingCount) {
         this.steamRatingCount = steamRatingCount;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

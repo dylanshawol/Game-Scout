@@ -2,13 +2,22 @@ package com.example.gamescout.ui.search;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gamescout.R;
+import com.example.gamescout.ui.api.Game;
+import com.example.gamescout.ui.database.WishListDatabase;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,6 +71,35 @@ public class SearchedGameFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_searched_game, container, false);
+
+        TextView searchedGameName = view.findViewById(R.id.searchedGameName);
+        ImageView searchedGameImage = view.findViewById(R.id.searchedGameImage);
+        TextView searchedGamePrice = view.findViewById(R.id.searchedGamePrice);
+        Button addGameToWishList = view.findViewById(R.id.searchedGameButton);
+
+        if (getArguments() != null) {
+            String gameName = getArguments().getString("gameName");
+            String gameImage = getArguments().getString("gameImage");
+            String gamePrice = getArguments().getString("gameNormalPrice");
+            String steamAppID = getArguments().getString("steamAppID");
+
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(gameName);
+            searchedGameName.setText(gameName);
+            searchedGamePrice.setText(gamePrice);
+            Picasso.get().load(gameImage).resize(960, 360).into(searchedGameImage);
+
+            addGameToWishList.setOnClickListener(view1 -> {
+                WishListDatabase db = new WishListDatabase(getContext());
+
+                db.addGame(new Game(gameName, gameImage, gamePrice, steamAppID));
+
+                db.close();
+
+                Toast.makeText(getContext(), "Game added to wish list!", Toast.LENGTH_SHORT).show();
+
+                Navigation.findNavController(view).navigate(R.id.navigation_wish_list);
+            });
+        }
 
         return view;
     }
